@@ -33,7 +33,6 @@ class CardRepositoryImpl @Inject constructor(
     override suspend fun get(bin: Int, isInit: Boolean) {
         try {
             val response = apiService.get(bin)
-            Log.i("Details res", response.body().toString())
             val body = response.body() ?: throw ApiError(response.code(), response.message())
             _cardData.emit(body)
 

@@ -1,14 +1,388 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/space4x"
     tools:context=".ui.DetailsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-</FrameLayout>
+        <Button
+            android:id="@+id/bt_find"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/find_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/edit_bin"
+            app:layout_constraintTop_toTopOf="@id/edit_bin" />
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_bin"
+            android:layout_width="@dimen/space64x"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space32x"
+            android:hint="@string/enter_bin_text"
+            android:inputType="number"
+            android:lines="1"
+            app:layout_constraintEnd_toStartOf="@id/bt_find"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/scheme_network_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space3x"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="@id/edit_bin"
+            app:layout_constraintTop_toBottomOf="@id/edit_bin">
+
+            <TextView
+                android:id="@+id/scheme_network_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/space1x"
+                android:text="@string/scheme_network_text"
+                android:textSize="@dimen/text_12sp" />
+
+            <TextView
+                android:id="@+id/scheme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/space1x"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_14sp"
+                tools:text="@string/sample_visa_text" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/type_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space3x"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="@id/edit_bin"
+            app:layout_constraintTop_toBottomOf="@id/scheme_network_layout">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/space1x"
+                android:text="@string/type_text"
+                android:textSize="@dimen/text_12sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/type_debit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/space1x"
+                    android:text="@string/debit_text"
+                    android:textSize="@dimen/text_14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/slash_text"
+                    android:textSize="@dimen/text_14sp" />
+
+                <TextView
+                    android:id="@+id/type_credit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/space1x"
+                    android:text="@string/credit_text"
+                    android:textSize="@dimen/text_14sp" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/bank_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space3x"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="@id/edit_bin"
+            app:layout_constraintTop_toBottomOf="@id/type_layout">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/space1x"
+                android:text="@string/bank_text"
+                android:textSize="@dimen/text_12sp" />
+
+            <TextView
+                android:id="@+id/bank_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/space1x"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_14sp"
+                tools:text="@string/sample_bank_text" />
+
+            <TextView
+                android:id="@+id/bank_url"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/space1x"
+                android:autoLink="web"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_14sp"
+                tools:text="@string/sample_bank_url_text" />
+
+            <TextView
+                android:id="@+id/bank_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/space1x"
+                android:autoLink="web"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_14sp"
+                tools:text="@string/sample_bank_phone_text" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/brand_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space3x"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="@id/edit_bin"
+            app:layout_constraintTop_toBottomOf="@id/bank_layout">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/space1x"
+                android:text="@string/brand_text"
+                android:textSize="@dimen/text_12sp" />
+
+            <TextView
+                android:id="@+id/brand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/space1x"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_14sp"
+                tools:text="@string/sample_brand_text" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/prepaid_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space3x"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="@id/edit_bin"
+            app:layout_constraintTop_toBottomOf="@id/brand_layout">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/space1x"
+                android:text="@string/prepaid_text"
+                android:textSize="@dimen/text_12sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/prepaid_yes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/space1x"
+                    android:text="@string/yes_text"
+                    android:textSize="@dimen/text_14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/slash_text"
+                    android:textSize="@dimen/text_14sp" />
+
+                <TextView
+                    android:id="@+id/prepaid_no"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/space1x"
+                    android:text="@string/no_text"
+                    android:textSize="@dimen/text_14sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/card_number_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space3x"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="@id/edit_bin"
+            app:layout_constraintTop_toBottomOf="@id/prepaid_layout">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/space1x"
+                android:text="@string/card_number_text"
+                android:textSize="@dimen/text_12sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/space1x"
+                        android:text="@string/length_text"
+                        android:textSize="@dimen/text_10sp" />
+
+                    <TextView
+                        android:id="@+id/card_number_length"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/space1x"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_14sp"
+                        tools:text="@string/empty_text" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/space1x"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/space1x"
+                        android:text="@string/luhn_text"
+                        android:textSize="@dimen/text_10sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/card_number_luhn_yes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/space1x"
+                            android:text="@string/yes_text"
+                            android:textSize="@dimen/text_14sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/slash_text"
+                            android:textSize="@dimen/text_14sp" />
+
+                        <TextView
+                            android:id="@+id/card_number_luhn_no"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/space1x"
+                            android:text="@string/no_text"
+                            android:textSize="@dimen/text_14sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/country_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space3x"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="@id/edit_bin"
+                app:layout_constraintTop_toBottomOf="@id/card_number_layout">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/space1x"
+                    android:text="@string/country_text"
+                    android:textSize="@dimen/text_12sp" />
+
+
+                <TextView
+                    android:id="@+id/country_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/space1x"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_14sp"
+                    tools:text="@string/sample_country_text" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/space1x"
+                        android:text="@string/latitude_text"
+                        android:textSize="@dimen/text_14sp" />
+
+                    <TextView
+                        android:id="@+id/country_latitude"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/space1x"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_14sp"
+                        tools:text="@string/sample_latitude_text" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/space1x"
+                        android:text="@string/longitude_text"
+                        android:textSize="@dimen/text_14sp" />
+
+                    <TextView
+                        android:id="@+id/country_longitude"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/space1x"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_14sp"
+                        tools:text="@string/sample_longitude_text" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/right_bracket_text"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_14sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

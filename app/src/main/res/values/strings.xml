@@ -1,5 +1,36 @@
 <resources>
     <string name="app_name">binlist.net</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="enter_bin_text"><font size="12">Enter the first digits of a card number (BIN/IIN)</font></string>
+    <string name="scheme_network_text">SCHEME / NETWORK</string>
+    <string name="type_text">TYPE</string>
+    <string name="bank_text">BANK</string>
+    <string name="brand_text">BRAND</string>
+    <string name="prepaid_text">PREPAID</string>
+    <string name="card_number_text">CARD NUMBER</string>
+    <string name="country_text">COUNTRY</string>
+    <string name="length_text">LENGTH</string>
+    <string name="luhn_text">LUHN</string>
+    <string name="right_bracket_text">)</string>
+    <string name="latitude_text">(latitude:</string>
+    <string name="longitude_text">longitude:</string>
+    <string name="debit_text">Debit</string>
+    <string name="credit_text">Credit</string>
+    <string name="slash_text">/</string>
+    <string name="yes_text">Yes</string>
+    <string name="no_text">No</string>
+    <string name="empty_text">--</string>
+    <string name="find_text">Find</string>
+
+    //Sample
+    <string name="sample_visa_text">Visa</string>
+    <string name="sample_bank_text">Jyske Bank, Hjørring</string>
+    <string name="sample_bank_url_text">www.jyskebank.dk</string>
+    <string name="sample_bank_phone_text">+4589893300</string>
+    <string name="sample_brand_text">Visa/Dankort</string>
+    <string name="sample_country_text">🇩🇰 Denmark</string>
+    <string name="sample_latitude_text">56</string>
+    <string name="sample_longitude_text">10</string>
+
+
 </resources>
