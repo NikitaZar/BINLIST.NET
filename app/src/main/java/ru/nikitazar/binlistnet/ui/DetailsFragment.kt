@@ -4,10 +4,10 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -16,6 +16,8 @@ import ru.nikitazar.binlistnet.R
 import ru.nikitazar.binlistnet.databinding.FragmentDetailsBinding
 import ru.nikitazar.binlistnet.dto.CardData
 import ru.nikitazar.binlistnet.viewModel.CardViewModel
+import ru.nikitazar.binlistnet.viewModel.NW_ERR
+import ru.nikitazar.binlistnet.viewModel.REQ_ERR
 import java.util.*
 
 const val DEFAULT_BIN = 45717360
@@ -172,6 +174,25 @@ class DetailsFragment : Fragment() {
     private fun subscribers() {
         viewModel.cardData.observe(viewLifecycleOwner) { cardData ->
             bind(cardData)
+        }
+
+        viewModel.errState.observe(viewLifecycleOwner) { err ->
+            when (err) {
+                REQ_ERR -> {
+                    Toast.makeText(
+                        requireContext(),
+                        getString(R.string.err_req_mes),
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+                NW_ERR -> {
+                    Toast.makeText(
+                        requireContext(),
+                        getString(R.string.err_nw_mes),
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
         }
     }
 }
