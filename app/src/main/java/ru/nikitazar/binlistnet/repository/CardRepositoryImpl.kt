@@ -49,4 +49,8 @@ class CardRepositoryImpl @Inject constructor(
             throw UnknownError
         }
     }
+
+    override suspend fun removeById(id: Long) = dao.removeById(id)
+
+    override suspend fun removeAll() = dao.removeAll()
 }

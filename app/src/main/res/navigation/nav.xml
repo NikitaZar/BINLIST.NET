@@ -8,6 +8,11 @@
     <fragment
         android:id="@+id/detailsFragment"
         android:name="ru.nikitazar.binlistnet.ui.DetailsFragment"
-        android:label="fragment_details"
+        android:label="@string/find_bin"
         tools:layout="@layout/fragment_details" />
+    <fragment
+        android:id="@+id/historyBinFragment"
+        android:name="ru.nikitazar.binlistnet.ui.HistoryBinFragment"
+        android:label="@string/history_req"
+        tools:layout="@layout/fragment_history_bin" />
 </navigation>

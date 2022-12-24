@@ -23,4 +23,12 @@ class CardViewModel @Inject constructor(
     fun get(bin: Int, isInit: Boolean) = viewModelScope.launch {
         cardRepository.get(bin = bin, isInit = isInit)
     }
+
+    fun removeById(id: Long) = viewModelScope.launch {
+        cardRepository.removeById(id)
+    }
+
+    fun removeAll() = viewModelScope.launch {
+        cardRepository.removeAll()
+    }
 }

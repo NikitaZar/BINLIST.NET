@@ -18,6 +18,9 @@
     <dimen name="space80x">320dp</dimen>
     <dimen name="space96x">384dp</dimen>
 
+    <dimen name="icon_button_padding">12dp</dimen>
+    <dimen name="icon_button_min_size">48dp</dimen>
+
 
     <dimen name="text_10sp">10sp</dimen>
     <dimen name="text_12sp">12sp</dimen>

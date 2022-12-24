@@ -9,4 +9,6 @@ interface CardRepository {
     val binData: Flow<List<CardBin>>
     val cardData: StateFlow<CardData>
     suspend fun get(bin: Int, isInit: Boolean)
+    suspend fun removeById(id: Long)
+    suspend fun removeAll()
 }

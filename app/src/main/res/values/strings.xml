@@ -21,6 +21,10 @@
     <string name="no_text">No</string>
     <string name="empty_text">--</string>
     <string name="find_text">Find</string>
+    <string name="find_bin">Find BIN</string>
+    <string name="history_req">History requests</string>
+
+
 
     //Sample
     <string name="sample_visa_text">Visa</string>
@@ -31,6 +35,7 @@
     <string name="sample_country_text">🇩🇰 Denmark</string>
     <string name="sample_latitude_text">56</string>
     <string name="sample_longitude_text">10</string>
+    <string name="sample_bin">45717360</string>
 
 
 </resources>

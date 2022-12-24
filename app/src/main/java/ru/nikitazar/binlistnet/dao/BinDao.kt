@@ -15,4 +15,10 @@ interface BinDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(bin: BinEntity): Long
+
+    @Query("DELETE FROM BinEntity WHERE id = :id")
+    suspend fun removeById(id: Long)
+
+    @Query("DELETE FROM BinEntity")
+    suspend fun removeAll()
 }
