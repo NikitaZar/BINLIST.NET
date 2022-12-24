@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
+import ru.nikitazar.binlistnet.R
 import ru.nikitazar.binlistnet.databinding.FragmentHistoryBinBinding
 import ru.nikitazar.binlistnet.dto.CardBin
 import ru.nikitazar.binlistnet.ui.adapter.CardBinAdapter
@@ -35,17 +37,22 @@ class HistoryBinFragment : Fragment() {
             }
         })
         binding.binList.adapter = adapter
-        binding.binList.addItemDecoration(
-            SpacingItemDecorator(ITEM_VERTICAL_SPACE)
-        )
+        binding.binList.addItemDecoration(SpacingItemDecorator(ITEM_VERTICAL_SPACE))
 
         binding.btRemoveAll.setOnClickListener {
-            viewModel.removeAll()
+            MaterialAlertDialogBuilder(requireContext())
+                .setTitle(getString(R.string.remove_all_mes))
+                .setPositiveButton(getString(R.string.yes_text)) { _, _ ->
+                    viewModel.removeAll()
+                }
+                .setNegativeButton(getString(R.string.no_text)) { _, _ -> }
+                .show()
         }
 
         viewModel.binData.observe(viewLifecycleOwner) {
             adapter.submitList(it)
         }
+
         return binding.root
     }
 }

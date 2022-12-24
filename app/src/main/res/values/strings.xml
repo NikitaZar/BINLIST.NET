@@ -23,6 +23,7 @@
     <string name="find_text">Find</string>
     <string name="find_bin">Find BIN</string>
     <string name="history_req">History requests</string>
+    <string name="remove_all_mes">Do you really want remove all?</string>
 
 
 
