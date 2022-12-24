@@ -13,7 +13,7 @@ import ru.nikitazar.binlistnet.databinding.FragmentHistoryBinBinding
 import ru.nikitazar.binlistnet.dto.CardBin
 import ru.nikitazar.binlistnet.ui.adapter.CardBinAdapter
 import ru.nikitazar.binlistnet.ui.adapter.OnInteractionListener
-import ru.nikitazar.binlistnet.ui.view.SpacingItemDecorator
+import ru.nikitazar.binlistnet.ui.view.utils.SpacingItemDecorator
 import ru.nikitazar.binlistnet.viewModel.CardViewModel
 
 const val ITEM_VERTICAL_SPACE = 20

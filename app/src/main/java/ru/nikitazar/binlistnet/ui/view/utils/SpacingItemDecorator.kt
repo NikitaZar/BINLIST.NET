@@ -1,4 +1,4 @@
-package ru.nikitazar.binlistnet.ui.view
+package ru.nikitazar.binlistnet.ui.view.utils
 
 import android.graphics.Rect
 import android.view.View
