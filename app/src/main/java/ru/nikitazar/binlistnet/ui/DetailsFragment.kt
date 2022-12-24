@@ -1,20 +1,22 @@
 package ru.nikitazar.binlistnet.ui
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import ru.nikitazar.binlistnet.R
 import ru.nikitazar.binlistnet.databinding.FragmentDetailsBinding
 import ru.nikitazar.binlistnet.dto.CardData
 import ru.nikitazar.binlistnet.viewModel.CardViewModel
+import java.util.*
 
 const val DEFAULT_BIN = 45717360
 
@@ -29,17 +31,8 @@ class DetailsFragment : Fragment() {
     ): View {
         binding = FragmentDetailsBinding.inflate(inflater, container, false)
         init()
-
-        binding.btFind.setOnClickListener {
-            getData(binding.editBin.text.toString()) {
-                binding.editBin.setText("")
-            }
-        }
-
-        viewModel.cardData.observe(viewLifecycleOwner) { cardData ->
-            bind(cardData)
-        }
-
+        listeners()
+        subscribers()
         return binding.root
     }
 
@@ -57,14 +50,12 @@ class DetailsFragment : Fragment() {
             }
 
             typeDebit.setTextColor(
-                if (cardData.type == requireContext().getString(R.string.debit_text).lowercase())
-                    blackColorId
+                if (cardData.type == requireContext().getString(R.string.debit_text).lowercase()) blackColorId
                 else defaultColorId
             )
 
             typeCredit.setTextColor(
-                if (cardData.type == requireContext().getString(R.string.credit_text).lowercase())
-                    blackColorId
+                if (cardData.type == requireContext().getString(R.string.credit_text).lowercase()) blackColorId
                 else defaultColorId
             )
 
@@ -135,6 +126,52 @@ class DetailsFragment : Fragment() {
             viewModel.get(binInt, false)
         } catch (e: java.lang.NumberFormatException) {
             act()
+        }
+    }
+
+    private fun listeners() {
+        with(binding) {
+            btFind.setOnClickListener {
+                getData(binding.editBin.text.toString()) {
+                    binding.editBin.setText("")
+                }
+            }
+
+            bankPhone.setOnClickListener {
+                callBank()
+            }
+
+            countryLayout.setOnClickListener {
+                openBankOnMap()
+            }
+        }
+    }
+
+    private fun callBank() {
+        val phone = binding.bankPhone.text.toString()
+        if (phone.isNotBlank() && phone.isNotEmpty()) {
+            val uri = "tel:${phone}"
+            val intent = Intent(Intent.ACTION_DIAL).apply { data = Uri.parse(uri) }
+            startActivity(intent)
+        }
+    }
+
+    private fun openBankOnMap() {
+        val latitude = binding.countryLatitude.text.toString()
+        val longitude = binding.countryLongitude.text.toString()
+
+        if (latitude.isNotEmpty() && latitude.isNotBlank() &&
+            longitude.isNotEmpty() && longitude.isNotBlank()
+        ) {
+            val uri = java.lang.String.format(Locale.ENGLISH, "geo:%s,%s", latitude, longitude)
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
+            startActivity(intent)
+        }
+    }
+
+    private fun subscribers() {
+        viewModel.cardData.observe(viewLifecycleOwner) { cardData ->
+            bind(cardData)
         }
     }
 }
