@@ -1,6 +1,5 @@
 package ru.nikitazar.binlistnet.ui.view
 
-import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.*
@@ -32,9 +31,6 @@ class LogoView @JvmOverloads constructor(
         textAlign = Paint.Align.LEFT
         typeface = ResourcesCompat.getFont(context, R.font.pfagoraslabpro_bold)
     }
-
-    private var progress = 0F
-    private var valueAnimator: ValueAnimator? = null
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         center = PointF(w / 2F, h / 2F)

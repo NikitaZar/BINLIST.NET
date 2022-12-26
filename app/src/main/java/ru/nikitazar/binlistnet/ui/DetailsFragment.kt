@@ -19,6 +19,7 @@ import ru.nikitazar.binlistnet.viewModel.CardViewModel
 import ru.nikitazar.binlistnet.viewModel.NW_ERR
 import ru.nikitazar.binlistnet.viewModel.REQ_ERR
 import java.util.*
+import kotlin.NoSuchElementException
 
 const val DEFAULT_BIN = 45717360
 
@@ -32,7 +33,6 @@ class DetailsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentDetailsBinding.inflate(inflater, container, false)
-        init()
         listeners()
         subscribers()
         return binding.root
@@ -106,7 +106,7 @@ class DetailsFragment : Fragment() {
             }
 
             countryLatitude.text = emptyText
-            cardData.country?.latitude.let {
+            cardData.country?.latitude?.let {
                 countryLatitude.text = it.toString()
             }
 
@@ -117,9 +117,9 @@ class DetailsFragment : Fragment() {
         }
     }
 
-    private fun init() {
-        binding.editBin.setText(DEFAULT_BIN.toString())
-        viewModel.get(DEFAULT_BIN, true)
+    private fun init(bin: Int) {
+        binding.editBin.setText(bin.toString())
+        viewModel.get(bin, true)
     }
 
     private fun getData(bin: String, act: () -> Unit) {
@@ -143,9 +143,9 @@ class DetailsFragment : Fragment() {
                 callBank()
             }
 
-            countryLayout.setOnClickListener {
-                openBankOnMap()
-            }
+//            countryLayout.setOnClickListener {
+//                openBankOnMap()
+//            }
         }
     }
 
@@ -158,13 +158,18 @@ class DetailsFragment : Fragment() {
         }
     }
 
-    private fun openBankOnMap() {
-        val latitude = binding.countryLatitude.text.toString()
-        val longitude = binding.countryLongitude.text.toString()
+    private fun openBankOnMap(cardData: CardData) {
+//        val latitude = binding.countryLatitude.text.toString()
+//        val longitude = binding.countryLongitude.text.toString()
 
-        if (latitude.isNotEmpty() && latitude.isNotBlank() &&
-            longitude.isNotEmpty() && longitude.isNotBlank()
-        ) {
+        val latitude = cardData.country?.latitude
+        val longitude = cardData.country?.longitude
+
+//        if (latitude.isNotEmpty() && latitude.isNotBlank() &&
+//            longitude.isNotEmpty() && longitude.isNotBlank()
+//        ) {
+
+        if (latitude != null && longitude != null) {
             val uri = java.lang.String.format(Locale.ENGLISH, "geo:%s,%s", latitude, longitude)
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
             startActivity(intent)
@@ -172,8 +177,21 @@ class DetailsFragment : Fragment() {
     }
 
     private fun subscribers() {
+        viewModel.binData.observe(viewLifecycleOwner) {
+            try {
+                init(it.first().bin)
+            } catch (e: NoSuchElementException) {
+                init(DEFAULT_BIN)
+            }
+        }
+
         viewModel.cardData.observe(viewLifecycleOwner) { cardData ->
+
             bind(cardData)
+
+            binding.countryLayout.setOnClickListener {
+                openBankOnMap(cardData)
+            }
         }
 
         viewModel.errState.observe(viewLifecycleOwner) { err ->

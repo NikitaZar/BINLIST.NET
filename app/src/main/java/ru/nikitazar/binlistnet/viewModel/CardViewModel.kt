@@ -9,6 +9,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import ru.nikitazar.binlistnet.errors.ApiError
 import ru.nikitazar.binlistnet.errors.NetworkError
+import ru.nikitazar.binlistnet.errors.UnknownError
 import ru.nikitazar.binlistnet.repository.CardRepository
 import javax.inject.Inject
 
@@ -38,6 +39,8 @@ class CardViewModel @Inject constructor(
             }
         } catch (e: NetworkError) {
             _errState.value = NW_ERR
+        } catch (e: UnknownError) {
+            _errState.value = REQ_ERR
         }
     }
 

@@ -8,6 +8,7 @@
     tools:context=".ui.SplashScreenActivity">
 
     <ru.nikitazar.binlistnet.ui.view.LogoView
+        android:id="@+id/myLogo"
         android:layout_width="300dp"
         android:layout_height="300dp" />
 
