@@ -1,5 +1,5 @@
 # О приложении
-Тестовое задание на стажировку в проекта ШИФТ компании ЦФТ (https://team.cft.ru/start/intensive)
+Тестовое задание на стажировку в проект ШИФТ компании ЦФТ (https://team.cft.ru/start/intensive)
 ---
 
 ![DetailsFragment](raw/preview/SplashScreen.jpg)
